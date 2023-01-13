@@ -1,0 +1,19 @@
+Dale si puedes!!
+-------------------------
+
+juego de abilidad en el control del mouse.
+cada jugador tendra 10 tiros.
+
+puntajes:
+-------------------------
+primer rango:  1  punto.
+segundo rango: 3  puntos.
+tercer rango:  6  puntos.
+cuarto rango:  10 puntos.
+quiento rango: 15 puntos.
+sexto rango:   21 puntos.
+centro:        50 puntos.
+-------------------------
+espero que se diviertan mucho:
+
+Jonathan alberth quispe Fuentes...
