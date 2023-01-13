@@ -1,0 +1,9 @@
+Para llamar al la libreria d deve poner...
+
+#include "prolib\nombre_de_libreria.h"
+
+un ejemplo de libreria es lib.h que esta en:
+
+D:\borlandc\include\prolib\lib.h
+
+es un ejemplo claro de una libreria...
