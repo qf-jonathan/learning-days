@@ -1,29 +1,29 @@
 /*
-  Este programa dibuja un gr fico de una forma recursiva. Est  implementado
+  Este programa dibuja un grï¿½fico de una forma recursiva. Estï¿½ implementado
   en Turbo C.
 
-  Ejecutar el programa antes de leer la explicaci¢n sobre el mismo para
-  enteder la explicaci¢n mejor. Leer adem s tambi‚n la explicaci¢n del
-  ejemplo anterior antes que ‚sta.
+  Ejecutar el programa antes de leer la explicaciï¿½n sobre el mismo para
+  enteder la explicaciï¿½n mejor. Leer ademï¿½s tambiï¿½n la explicaciï¿½n del
+  ejemplo anterior antes que ï¿½sta.
 
-  Este ejemplo es semejante al anterior aunque algo m s complejo y m s
-  sofisticado desde el punto de vista est‚tico. Esta forma se obtiene
-  tambi‚n por superposici¢n de varias curvas. S(i) se denomina la curva
-  de Sierpinski de orden i. ¨Cu l es el esquema recursivo? Se siente uno
-  tentado de identificar la ®hoja¯ S(1) como bloque b sico de construcci¢n,
-  posiblemente quit ndole un borde. Pero esto no conduce a una soluci¢n. La
+  Este ejemplo es semejante al anterior aunque algo mï¿½s complejo y mï¿½s
+  sofisticado desde el punto de vista estï¿½tico. Esta forma se obtiene
+  tambiï¿½n por superposiciï¿½n de varias curvas. S(i) se denomina la curva
+  de Sierpinski de orden i. ï¿½Cuï¿½l es el esquema recursivo? Se siente uno
+  tentado de identificar la ï¿½hojaï¿½ S(1) como bloque bï¿½sico de construcciï¿½n,
+  posiblemente quitï¿½ndole un borde. Pero esto no conduce a una soluciï¿½n. La
   diferencia principal entre las curvas de Hilbert y Sierpinski es que estas
-  £ltimas son cerradas (sin discontinuidades). Esto implica que el esquema
-  b sico de recursi¢n debe ser una curva abierta y que las cuatro partes
-  deben estar conectadas por l¡neas no pertenecientes al propio esquema
-  recursivo. Realmente, estas l¡neas est n formadas por cuatro rectas en
+  ï¿½ltimas son cerradas (sin discontinuidades). Esto implica que el esquema
+  bï¿½sico de recursiï¿½n debe ser una curva abierta y que las cuatro partes
+  deben estar conectadas por lï¿½neas no pertenecientes al propio esquema
+  recursivo. Realmente, estas lï¿½neas estï¿½n formadas por cuatro rectas en
   las cuatro esquinas de los bordes. Pueden considerarse como pertenecientes
-  a una curva inicial no vac¡a, S(0), que es un cuadrado apoyado en un v‚rtice.
+  a una curva inicial no vacï¿½a, S(0), que es un cuadrado apoyado en un vï¿½rtice.
 
   A partir de esto, el esquema recursivo se establece inmediatamente. Las
-  formas b sicas se denominan nuevamente A, B, C y D y las l¡neas de conexi¢n
-  se dibujan expl¡citamente. Obs‚rvese que los cuatro esquemas recursivos son
-  id‚nticos realmente, con la £nica diferencia de que est n girados 90§.
+  formas bï¿½sicas se denominan nuevamente A, B, C y D y las lï¿½neas de conexiï¿½n
+  se dibujan explï¿½citamente. Obsï¿½rvese que los cuatro esquemas recursivos son
+  idï¿½nticos realmente, con la ï¿½nica diferencia de que estï¿½n girados 90ï¿½.
 
             S: A diagonal_hacia_abajo_de_izq_a_der
                B diagonal_hacia_abajo_de_der_a_izq
@@ -52,7 +52,7 @@
                C diagonal_hacia_arriba_de_der_a_izq
                D
 
-  Si se usan los mismos procedimientos b sicos para la operaciones de dibujo
+  Si se usan los mismos procedimientos bï¿½sicos para la operaciones de dibujo
   que en el ejemplo de las curvas de Hilbert, el anterior esquema recursivo
   se transforma sin dificultad en un algoritmo (directa e indirectamente)
   recursivo.
@@ -66,130 +66,164 @@
       finsi
     finprocedimiento
 
-  Pueden obtenerse en forma an loga procedimientos correspondientes a los
+  Pueden obtenerse en forma anï¿½loga procedimientos correspondientes a los
   esquemas B, C y D.
 
-  Las caracter¡sticas gr ficas utilizadas en este programa est n explicadas
+  Las caracterï¿½sticas grï¿½ficas utilizadas en este programa estï¿½n explicadas
   en el ejemplo anterior ya que los dos ejemplos son similares.
 */
 
 #include <graphics.h> /* lineto (), moveto (), setviewport (), initgrah (),
-                         graphresult (), grOk, getmaxx (), getmaxy ()      */
-#include <stdio.h>    /* printf ()                                         */
+
+graphresult(), grOk, getmaxx(), getmaxy() * /#include <stdio.h>    /* printf ()                                         */
+
 #include <conio.h>    /* geth ()                                           */
+
 #include <stdlib.h>   /* exit (), EXIT_FAILURE                             */
 
 int h0, h, x, y;
 
-void a (int), b (int), c (int), d (int);
+void a(int), b(int), c(int), d(int);
 
-void inicializar_grafico (void);
+void inicializar_grafico(void);
 
-#define empezargraf  inicializar_grafico ();
-#define plot         lineto (x, y)
-#define setplot      moveto (x, y);
-#define terminargraf closegraph ();
+#define empezargraf inicializar_grafico();
+#define plot lineto(x, y)
+#define setplot moveto(x, y);
+#define terminargraf closegraph();
 
-void main (void)
-{
-  const int n = 7;
-  int i, x0, y0;
+void main(void) {
+    const int n = 7;
+    int i, x0, y0;
 
-  empezargraf;
+    empezargraf;
 
-  i = 0;
-  h = h0 / 4;
-  x0 = 2 * h;
-  y0 = 3 * h;
+    i = 0;
+    h = h0 / 4;
+    x0 = 2 * h;
+    y0 = 3 * h;
 
-  do
-    {
-      i++;
-      x0 -= h;
-      h /= 2;
-      y0 += h;
-      x = x0;
-      y = y0;
-      setplot;
-      A (i); x += h; y -= h; plot;
-      B (i); x -= h; y -= h; plot;
-      C (i); x -= h; y += h; plot;
-      D (i); x += h; y += h; plot;
-      /* 27 es el car cter ASCII de la tecla ESCAPE */
-    } while (getch () != 27 && i != n);
+    do {
+        i++;
+        x0 -= h;
+        h /= 2;
+        y0 += h;
+        x = x0;
+        y = y0;
+        setplot;
+        A(i);
+        x += h;
+        y -= h;
+        plot;
+        B(i);
+        x -= h;
+        y -= h;
+        plot;
+        C(i);
+        x -= h;
+        y += h;
+        plot;
+        D(i);
+        x += h;
+        y += h;
+        plot;
+        /* 27 es el carï¿½cter ASCII de la tecla ESCAPE */
+    } while (getch() != 27 && i != n);
 
-   terminargraf;
+    terminargraf;
 }
 
-void inicializar_grafico (void)
-{
-  int gdriver = DETECT, gmode;
-  int vpx1, vpy1, vpx2, vpy2;
-  int errorcode;
+void inicializar_grafico(void) {
+    int gdriver = DETECT, gmode;
+    int vpx1, vpy1, vpx2, vpy2;
+    int errorcode;
 
-  initgraph (&gdriver, &gmode, "");
-  errorcode = graphresult ();
+    initgraph( & gdriver, & gmode, "");
+    errorcode = graphresult();
 
-  if (errorcode != grOk)
-    {
-      printf ("Error Gr fico: %s\n", grapherrormsg (errorcode));
-      getch ();
-      exit (EXIT_FAILURE);
+    if (errorcode != grOk) {
+        printf("Error Grï¿½fico: %s\n", grapherrormsg(errorcode));
+        getch();
+        exit(EXIT_FAILURE);
     }
 
-  h0 = getmaxx () + 1 >= 640 && getmaxy () + 1 >= 480 ? 512 : 128;
+    h0 = getmaxx() + 1 >= 640 && getmaxy() + 1 >= 480 ? 512 : 128;
 
-  /* calcula las coordenadas de viewport para crear un viewport en el centro
-     de la pantalla de altura y anchura h0 si puede; esto se hace para que
-     el gr fico salga centrado en la pantalla */
-  vpx1 = (getmaxx () + 1 - h0) / 2 + 1;
-  vpy1 = getmaxy () + 1 <= h0 ? 0 : (getmaxy () + 1 - h0) / 2 + 1;
-  vpx2 = vpx1 + h0 - 1;
-  vpy2 = getmaxy () + 1 <= h0 ? getmaxy () : vpy1 + h0 - 1;
+    /* calcula las coordenadas de viewport para crear un viewport en el centro
+       de la pantalla de altura y anchura h0 si puede; esto se hace para que
+       el grï¿½fico salga centrado en la pantalla */
+    vpx1 = (getmaxx() + 1 - h0) / 2 + 1;
+    vpy1 = getmaxy() + 1 <= h0 ? 0 : (getmaxy() + 1 - h0) / 2 + 1;
+    vpx2 = vpx1 + h0 - 1;
+    vpy2 = getmaxy() + 1 <= h0 ? getmaxy() : vpy1 + h0 - 1;
 
-  setviewport (vpx1, vpy1, vpx2, vpy2, 0);
+    setviewport(vpx1, vpy1, vpx2, vpy2, 0);
 }
 
-void a (int i)
-{
-  if (i > 0)
-    {
-      a (i-1); x += h; y -= h; plot;
-      b (i-1); x += 2 * h; plot;
-      d (i-1); x += h; y += h; plot;
-      a (i-1);
-    }
-}
-
-void b (int i)
-{
-  if (i > 0)
-    {
-      b (i-1); x -= h; y -= h; plot;
-      c (i-1); y -= 2 * h; plot;
-      a (i-1); x += h; y -= h; plot;
-      b (i-1);
-    }
-}
-
-void c (int i)
-{
-  if (i > 0)
-    {
-      c (i-1); x -= h; y += h; plot;
-      d (i-1); x -= 2 * h; plot;
-      b (i-1); x -= h; y -= h; plot;
-      c (i-1);
+void a(int i) {
+    if (i > 0) {
+        a(i - 1);
+        x += h;
+        y -= h;
+        plot;
+        b(i - 1);
+        x += 2 * h;
+        plot;
+        d(i - 1);
+        x += h;
+        y += h;
+        plot;
+        a(i - 1);
     }
 }
 
-void d (int i)
-{
-  if (i > 0)
-    {
-      d (i-1); x += h; y += h; plot;
-      a (i-1); y += 2 * h; plot;
-      c (i-1); x -= h; y += h; plot;
-      d (i-1);
+void b(int i) {
+    if (i > 0) {
+        b(i - 1);
+        x -= h;
+        y -= h;
+        plot;
+        c(i - 1);
+        y -= 2 * h;
+        plot;
+        a(i - 1);
+        x += h;
+        y -= h;
+        plot;
+        b(i - 1);
+    }
+}
+
+void c(int i) {
+    if (i > 0) {
+        c(i - 1);
+        x -= h;
+        y += h;
+        plot;
+        d(i - 1);
+        x -= 2 * h;
+        plot;
+        b(i - 1);
+        x -= h;
+        y -= h;
+        plot;
+        c(i - 1);
+    }
+}
+
+void d(int i) {
+    if (i > 0) {
+        d(i - 1);
+        x += h;
+        y += h;
+        plot;
+        a(i - 1);
+        y += 2 * h;
+        plot;
+        c(i - 1);
+        x -= h;
+        y += h;
+        plot;
+        d(i - 1);
     }
 }

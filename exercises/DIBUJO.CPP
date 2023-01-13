@@ -1,81 +1,81 @@
 /*
-  Este programa dibuja un gr fico de una forma recursiva. Est  implementado
+  Este programa dibuja un grï¿½fico de una forma recursiva. Estï¿½ implementado
   en Turbo C.
 
-  Ejecutar el programa antes de leer la explicaci¢n sobre el mismo para
-  enteder la explicaci¢n mejor.
+  Ejecutar el programa antes de leer la explicaciï¿½n sobre el mismo para
+  enteder la explicaciï¿½n mejor.
 
-  La atractiva forma gr fica que muestra en la ejecuci¢n del programa est 
-  formada por la superposici¢n de cinco curvas. Estas siguen un esquema
-  regular y sugieren que deben poder dibujarse por un ®plotter¯ controlado
+  La atractiva forma grï¿½fica que muestra en la ejecuciï¿½n del programa estï¿½
+  formada por la superposiciï¿½n de cinco curvas. Estas siguen un esquema
+  regular y sugieren que deben poder dibujarse por un ï¿½plotterï¿½ controlado
   por computador. El objetivo a conseguir es descubrir el esquema recursivo
-  con el que debe construirse el programa que haga el dibujo. Por inspecci¢n
+  con el que debe construirse el programa que haga el dibujo. Por inspecciï¿½n
   se observa que tres de las curvas superpuestas tienen la forma indicada
   en los dibujos siguientes; se designan por H1, H2 y H3.
 
     Curva de Hilbert de orden 1:
 
-    ÚÄÄÄÄÄÄÄ
-    ³
-    ³
-    ÀÄÄÄÄÄÄÄ
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    ï¿½
+    ï¿½
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     Curva de Hilbert de orden 2:
 
-    ÚÄÄÄÄÄÄÄ¿
-    ³       ³   ³
-    ÀÄÄÄ¿   ÀÄÄÄÙ
-        ³
-    ÚÄÄÄÙ   ÚÄÄÄ¿
-    ³       ³   ³
-    ÀÄÄÄÄÄÄÄÙ
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
+    ï¿½       ï¿½   ï¿½
+    ï¿½ï¿½ï¿½Ä¿   ï¿½ï¿½ï¿½ï¿½ï¿½
+        ï¿½
+    ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½Ä¿
+    ï¿½       ï¿½   ï¿½
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     Curva de Hilbert de orden 3:
 
-    ÚÄÄÄ¿ ÚÄÄÄ¿ ÚÄ
-    ÀÄ¿ ÀÄÙ ÚÄÙ ÀÄ¿
-    ÚÄÙ ÚÄ¿ ³ ÚÄ¿ ³
-    ÀÄÄÄÙ ³ ÀÄÙ ÀÄÙ
-    ÚÄÄÄ¿ ³ ÚÄ¿ ÚÄ¿
-    ÀÄ¿ ÀÄÙ ³ ÀÄÙ ³
-    ÚÄÙ ÚÄ¿ ÀÄ¿ ÚÄÙ
-    ÀÄÄÄÙ ÀÄÄÄÙ ÀÄ
+    ï¿½ï¿½ï¿½Ä¿ ï¿½ï¿½ï¿½Ä¿ ï¿½ï¿½
+    ï¿½Ä¿ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ä¿
+    ï¿½ï¿½ï¿½ ï¿½Ä¿ ï¿½ ï¿½Ä¿ ï¿½
+    ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+    ï¿½ï¿½ï¿½Ä¿ ï¿½ ï¿½Ä¿ ï¿½Ä¿
+    ï¿½Ä¿ ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ ï¿½
+    ï¿½ï¿½ï¿½ ï¿½Ä¿ ï¿½Ä¿ ï¿½ï¿½ï¿½
+    ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
-  Las figuras muestran que H(i+1) se obtiene por composici¢n de cuatro curvas
-  de tipo H(i) de tama¤o mitad, giradas apropiadamente, y unidas por tres
-  l¡neas. Obs‚rvese que H(1) puede considerarse formada por cuatro curvas de
-  un tipo vac¡o H(0) conectadas por tres rectas. H(i) se denomina curva de
+  Las figuras muestran que H(i+1) se obtiene por composiciï¿½n de cuatro curvas
+  de tipo H(i) de tamaï¿½o mitad, giradas apropiadamente, y unidas por tres
+  lï¿½neas. Obsï¿½rvese que H(1) puede considerarse formada por cuatro curvas de
+  un tipo vacï¿½o H(0) conectadas por tres rectas. H(i) se denomina curva de
   Hilbert de orden i, en honor a su inventor D. Hilbert (1891).
 
-  Sup¢ngase que las herramientas b sicas de que se dispone para dibujar son
+  Supï¿½ngase que las herramientas bï¿½sicas de que se dispone para dibujar son
   dos variables de coordenadas x e y, un procedimiento setplot (situar la
-  pluma del ®plotter¯ en las coordenadas x e y) y un procedimiento plot (que
-  mueve la pluma de dibujo desde la situaci¢n actual a la posici¢n indicada
+  pluma del ï¿½plotterï¿½ en las coordenadas x e y) y un procedimiento plot (que
+  mueve la pluma de dibujo desde la situaciï¿½n actual a la posiciï¿½n indicada
   por x e y).
 
-  Como cada curva H(i) est  formada por cuatro copias de tama¤o mitad de la
-  curva H(i-1) es l¢gico expresar el procedimiento de dibujar H(i) como
-  compuesto de cuatro partes, cada una dibujando una H(i-1) del tama¤o apro-
+  Como cada curva H(i) estï¿½ formada por cuatro copias de tamaï¿½o mitad de la
+  curva H(i-1) es lï¿½gico expresar el procedimiento de dibujar H(i) como
+  compuesto de cuatro partes, cada una dibujando una H(i-1) del tamaï¿½o apro-
   piado, convenientemente girada. Si se denomina cada parte, respectivamente,
-  por A, B, C y D, y las rutinas que dibujan las correspondientes l¡neas de
-  interconexi¢n se representan por flechas apuntando en la direcci¢n corres-
+  por A, B, C y D, y las rutinas que dibujan las correspondientes lï¿½neas de
+  interconexiï¿½n se representan por flechas apuntando en la direcciï¿½n corres-
   pondiente aparece el siguiente esquema recursivo:
 
-            ÚÄ
-            ÀÄ>  A:  D <- A   A -> B
+            ï¿½ï¿½
+            ï¿½ï¿½>  A:  D <- A   A -> B
 
-            ÚÄ¿
-            ³   B:  C   B -> B   A
+            ï¿½Ä¿
+            ï¿½   B:  C   B -> B   A
 
             <Ä¿
-             ÄÙ  C:  B -> C   C <- D
+             ï¿½ï¿½  C:  B -> C   C <- D
 
-             ³
-            ÀÄÙ  D:  A   D <- D   C
+             ï¿½
+            ï¿½ï¿½ï¿½  D:  A   D <- D   C
 
-  Si se designa la l¡nea unitaria por h, el procedimiento correspondiente al
+  Si se designa la lï¿½nea unitaria por h, el procedimiento correspondiente al
   esquema A se expresa inmediatamente uilizando activaciones recursivas de los
-  procedimientos designados an logamente por B y D y del propio A.
+  procedimientos designados anï¿½logamente por B y D y del propio A.
 
     procedimiento A (i es entero)
       si i > 0 entonces
@@ -89,23 +89,23 @@
   Este procedimiento se inicia por el programa principal una vez por cada curva
   de Hilbert a superponer. El programa principal determina el punto inicial de
   la curva, o sea, los valores iniciales de x e y, y el incremento unitario h. Se
-  llama h0 al ancho total de la p gina, que debe ser h0 = (2 elevado a k) para
-  alg£n k ò n. El programa completo dibuja las n curvas de Hilbert H1, ... Hn.
+  llama h0 al ancho total de la pï¿½gina, que debe ser h0 = (2 elevado a k) para
+  algï¿½n k ï¿½ n. El programa completo dibuja las n curvas de Hilbert H1, ... Hn.
 
-  Descripci¢n de las caracter¡sticas gr ficas utilizadas de Turbo C (concreta-
-  mente de la versi¢n Borland C++ 2.0).
+  Descripciï¿½n de las caracterï¿½sticas grï¿½ficas utilizadas de Turbo C (concreta-
+  mente de la versiï¿½n Borland C++ 2.0).
 
-  Para trabajar con gr fico es necesario incluir el fichero <graphics.h>.
+  Para trabajar con grï¿½fico es necesario incluir el fichero <graphics.h>.
 
-  En Turbo C, siempre que se vaya a utilizar el modo gr fico, es necesario
+  En Turbo C, siempre que se vaya a utilizar el modo grï¿½fico, es necesario
   inicializarlo y cerrarlo.
 
-  La inicializaci¢n se hace con la funci¢n initgraph(). El prototipo de esta
-  funci¢n es:
+  La inicializaciï¿½n se hace con la funciï¿½n initgraph(). El prototipo de esta
+  funciï¿½n es:
 
     void initgraph (int *graphdriver, int *graphmode, char *pathtodriver);
 
-  donde graphdriver debe contener el dispositivo gr fico; los valores que
+  donde graphdriver debe contener el dispositivo grï¿½fico; los valores que
   puede tomar son:
 
     CGA           MCGA
@@ -113,75 +113,75 @@
     EGAMONO       IBM8514
     HERCMONO      ATT400
     VGA           PC3270
-    DETECT (autodetecci¢n de la tarjeta gr fica)
+    DETECT (autodetecciï¿½n de la tarjeta grï¿½fica)
 
-  En graphmode se guarda el modo gr fico para cada dispositivo gr fico; los
+  En graphmode se guarda el modo grï¿½fico para cada dispositivo grï¿½fico; los
   valores que puede tomar son:
 
-    ÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
-     CGAC0      ³  320 x 200  ³  paleta 0
-     CGAC1      ³  320 x 200  ³  paleta 1
-     CGAC2      ³  320 x 200  ³  paleta 2
-     CGAC3      ³  320 x 200  ³  paleta 3
-     CGAHI      ³  640 x 200  ³  2 colores
-                ³             ³
-     MCGAC0     ³  320 x 200  ³  paleta 0
-     MCGAC1     ³  320 x 200  ³  paleta 1
-     MCGAC2     ³  320 x 200  ³  paleta 2
-     MCGAC3     ³  320 x 200  ³  paleta 3
-     MCGAMED    ³  640 x 200  ³  2 colores
-     MCGAHI     ³  640 x 480  ³  2 colores
-                ³             ³
-     EGALO      ³  640 x 200  ³ 16 colores
-     EGAHI      ³  640 x 350  ³ 16 colores
-     EGA64LO    ³  640 x 200  ³ 16 colores
-     EGA64HI    ³  640 x 350  ³  4 colores
-                ³             ³
-     EGAMONOHI  ³  640 x 350  ³  2 colores
-     HERCMONOHI ³  720 x 348  ³  2 colores
-                ³             ³
-     ATT400C0   ³  320 x 200  ³  paleta 0
-     ATT400C1   ³  320 x 200  ³  paleta 1
-     ATT400C2   ³  320 x 200  ³  paleta 2
-     ATT400C3   ³  320 x 200  ³  paleta 3
-     ATT400MED  ³  640 x 200  ³  2 colores
-     ATT400HI   ³  640 x 400  ³  2 colores
-                ³             ³
-     VGALO      ³  640 x 200  ³ 16 colores
-     VGAMED     ³  640 x 350  ³ 16 colores
-     VGAHI      ³  640 x 480  ³ 16 colores
-                ³             ³
-     PC3270HI   ³  720 x 350  ³  2 colores
-     IBM8514LO  ³  640 x 480  ³256 colores
-     IBM8514HI  ³ 1024 x 768  ³256 colores
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     CGAC0      ï¿½  320 x 200  ï¿½  paleta 0
+     CGAC1      ï¿½  320 x 200  ï¿½  paleta 1
+     CGAC2      ï¿½  320 x 200  ï¿½  paleta 2
+     CGAC3      ï¿½  320 x 200  ï¿½  paleta 3
+     CGAHI      ï¿½  640 x 200  ï¿½  2 colores
+                ï¿½             ï¿½
+     MCGAC0     ï¿½  320 x 200  ï¿½  paleta 0
+     MCGAC1     ï¿½  320 x 200  ï¿½  paleta 1
+     MCGAC2     ï¿½  320 x 200  ï¿½  paleta 2
+     MCGAC3     ï¿½  320 x 200  ï¿½  paleta 3
+     MCGAMED    ï¿½  640 x 200  ï¿½  2 colores
+     MCGAHI     ï¿½  640 x 480  ï¿½  2 colores
+                ï¿½             ï¿½
+     EGALO      ï¿½  640 x 200  ï¿½ 16 colores
+     EGAHI      ï¿½  640 x 350  ï¿½ 16 colores
+     EGA64LO    ï¿½  640 x 200  ï¿½ 16 colores
+     EGA64HI    ï¿½  640 x 350  ï¿½  4 colores
+                ï¿½             ï¿½
+     EGAMONOHI  ï¿½  640 x 350  ï¿½  2 colores
+     HERCMONOHI ï¿½  720 x 348  ï¿½  2 colores
+                ï¿½             ï¿½
+     ATT400C0   ï¿½  320 x 200  ï¿½  paleta 0
+     ATT400C1   ï¿½  320 x 200  ï¿½  paleta 1
+     ATT400C2   ï¿½  320 x 200  ï¿½  paleta 2
+     ATT400C3   ï¿½  320 x 200  ï¿½  paleta 3
+     ATT400MED  ï¿½  640 x 200  ï¿½  2 colores
+     ATT400HI   ï¿½  640 x 400  ï¿½  2 colores
+                ï¿½             ï¿½
+     VGALO      ï¿½  640 x 200  ï¿½ 16 colores
+     VGAMED     ï¿½  640 x 350  ï¿½ 16 colores
+     VGAHI      ï¿½  640 x 480  ï¿½ 16 colores
+                ï¿½             ï¿½
+     PC3270HI   ï¿½  720 x 350  ï¿½  2 colores
+     IBM8514LO  ï¿½  640 x 480  ï¿½256 colores
+     IBM8514HI  ï¿½ 1024 x 768  ï¿½256 colores
 
-  En pathtodriver debe estar el path del directorio donde est n los ficheros
-  con extensi¢n .BGI. Su sintaxis es:
+  En pathtodriver debe estar el path del directorio donde estï¿½n los ficheros
+  con extensiï¿½n .BGI. Su sintaxis es:
 
     "..\\bgi\\drivers"
 
-  El modo gr fico se cierra con la funci¢n closegraph() cuyo prototipo es:
+  El modo grï¿½fico se cierra con la funciï¿½n closegraph() cuyo prototipo es:
 
     void closegraph (void);
 
-  La esquina izquierda superior de la pantalla gr fica tiene coordenadas: 0, 0.
+  La esquina izquierda superior de la pantalla grï¿½fica tiene coordenadas: 0, 0.
 
-  Funciones gr ficas utilizadas en este programa:
+  Funciones grï¿½ficas utilizadas en este programa:
 
     1) void lineto (int x, int y);
 
-      Dibuja una l¡nea desde la posici¢n actual del cursor gr fico hasta (x,y).
+      Dibuja una lï¿½nea desde la posiciï¿½n actual del cursor grï¿½fico hasta (x,y).
 
     2) void moveto (int x, int y);
 
-      Mueve el cursor gr fico a (x,y).
+      Mueve el cursor grï¿½fico a (x,y).
 
     3) int graphresult (void);
 
-      Devuelve un c¢digo de error para la £ltima operaci¢n gr fica no exitosa
-      o grOk si la £ltima operaci¢n gr fica ha tenido ‚xito.
+      Devuelve un cï¿½digo de error para la ï¿½ltima operaciï¿½n grï¿½fica no exitosa
+      o grOk si la ï¿½ltima operaciï¿½n grï¿½fica ha tenido ï¿½xito.
 
-      Los c¢digos de error devueltos por graphresult() son:
+      Los cï¿½digos de error devueltos por graphresult() son:
 
         grOk                grNoInitGraph
         grNotDetected       grFileNotFound
@@ -199,131 +199,145 @@
 
     5) void setviewport (int izq, int ar, int der, int ab, int clip);
 
-      Crea un viewport para la salida gr fica.
-      Un viewport es una ventana de trabajo en la pantalla gr fica de tal
+      Crea un viewport para la salida grï¿½fica.
+      Un viewport es una ventana de trabajo en la pantalla grï¿½fica de tal
       modo que la coordenada (0,0) corresponde a la esquina izquierda superior
       del viewport y no de la pantalla.
-      El par metro clip especifica si los valores fuera del viewport son
+      El parï¿½metro clip especifica si los valores fuera del viewport son
       recortados.
 
-  Las caracter¡sticas gr ficas de Turbo C se estudiar  en lecciones posteriores.
-  Aqu¡ s¢lo hemos dado los conceptos b sicos sobre ellas para comprender c¢mo
-  est  hecho el programa.
+  Las caracterï¿½sticas grï¿½ficas de Turbo C se estudiarï¿½ en lecciones posteriores.
+  Aquï¿½ sï¿½lo hemos dado los conceptos bï¿½sicos sobre ellas para comprender cï¿½mo
+  estï¿½ hecho el programa.
 */
 
 #include <graphics.h> /* lineto (), moveto (), setviewport (), initgrah (),
-                         graphresult (), grOk, getmaxx (), getmaxy ()      */
-#include <stdio.h>    /* printf ()                                         */
+
+graphresult(), grOk, getmaxx(), getmaxy() * /#include <stdio.h>    /* printf ()                                         */
+
 #include <conio.h>    /* geth ()                                           */
+
 #include <stdlib.h>   /* exit (), EXIT_FAILURE                             */
 
 int h0, h, x, y;
 
-void a (int), b (int), c (int), d (int);
-void inicializar_grafico (void);
+void a(int), b(int), c(int), d(int);
+void inicializar_grafico(void);
 
-#define empezargraf  inicializar_grafico ();
-#define plot         lineto (x, y)
-#define setplot      moveto (x, y);
-#define terminargraf closegraph ();
+#define empezargraf inicializar_grafico();
+#define plot lineto(x, y)
+#define setplot moveto(x, y);
+#define terminargraf closegraph();
 
-void main (void)
-{
-  const int n = 4;
-  int i, x0, y0;
+void main(void) {
+    const int n = 4;
+    int i, x0, y0;
 
-  empezargraf;
+    empezargraf;
 
-  i = 0;
-  h = h0;
-  x0 = h / 2;
-  y0 = x0;
+    i = 0;
+    h = h0;
+    x0 = h / 2;
+    y0 = x0;
 
-  do
-    {
-      i++;
-      h /= 2;
-      x0 += (h/2);
-      y0 += (h/2);
-      x = x0;
-      y = y0;
-      setplot;
-      a (i);
+    do {
+        i++;
+        h /= 2;
+        x0 += (h / 2);
+        y0 += (h / 2);
+        x = x0;
+        y = y0;
+        setplot;
+        a(i);
     } while (i != n);
 
-   getch ();
-   terminargraf;
+    getch();
+    terminargraf;
 }
 
-void inicializar_grafico (void)
-{
-  int gdriver = DETECT, gmode;
-  int vpx1, vpy1, vpx2, vpy2;
-  int errorcode;
+void inicializar_grafico(void) {
+    int gdriver = DETECT, gmode;
+    int vpx1, vpy1, vpx2, vpy2;
+    int errorcode;
 
-  initgraph (&gdriver, &gmode, "");
-  errorcode = graphresult ();
+    initgraph( & gdriver, & gmode, "");
+    errorcode = graphresult();
 
-  if (errorcode != grOk)
-    {
-      printf ("Error Gr fico: %s\n", grapherrormsg (errorcode));
-      getch ();
-      exit (EXIT_FAILURE);
+    if (errorcode != grOk) {
+        printf("Error Grï¿½fico: %s\n", grapherrormsg(errorcode));
+        getch();
+        exit(EXIT_FAILURE);
     }
 
-  h0 = getmaxx () + 1 >= 640 && getmaxy () + 1 >= 480 ? 512 : 128;
+    h0 = getmaxx() + 1 >= 640 && getmaxy() + 1 >= 480 ? 512 : 128;
 
-  /* calcula las coordenadas de viewport para crear un viewport en el centro
-     de la pantalla de altura y anchura h0 si puede; esto se hace para que
-     el gr fico salga centrado en la pantalla */
-  vpx1 = (getmaxx () + 1 - h0) / 2 + 1;
-  vpy1 = getmaxy () + 1 <= h0 ? 0 : (getmaxy () + 1 - h0) / 2 + 1;
-  vpx2 = vpx1 + h0 - 1;
-  vpy2 = getmaxy () + 1 <= h0 ? getmaxy () : vpy1 + h0 - 1;
+    /* calcula las coordenadas de viewport para crear un viewport en el centro
+       de la pantalla de altura y anchura h0 si puede; esto se hace para que
+       el grï¿½fico salga centrado en la pantalla */
+    vpx1 = (getmaxx() + 1 - h0) / 2 + 1;
+    vpy1 = getmaxy() + 1 <= h0 ? 0 : (getmaxy() + 1 - h0) / 2 + 1;
+    vpx2 = vpx1 + h0 - 1;
+    vpy2 = getmaxy() + 1 <= h0 ? getmaxy() : vpy1 + h0 - 1;
 
-  setviewport (vpx1, vpy1, vpx2, vpy2, 0);
+    setviewport(vpx1, vpy1, vpx2, vpy2, 0);
 }
 
-void a (int i)
-{
-  if (i > 0)
-    {
-      d (i-1); x -= h; plot;
-      a (i-1); y -= h; plot;
-      a (i-1); x += h; plot;
-      b (i-1);
-    }
-}
-
-void b (int i)
-{
-  if (i > 0)
-    {
-      c (i-1); y += h; plot;
-      b (i-1); x += h; plot;
-      b (i-1); y -= h; plot;
-      a (i-1);
+void a(int i) {
+    if (i > 0) {
+        d(i - 1);
+        x -= h;
+        plot;
+        a(i - 1);
+        y -= h;
+        plot;
+        a(i - 1);
+        x += h;
+        plot;
+        b(i - 1);
     }
 }
 
-void c (int i)
-{
-  if (i > 0)
-    {
-      b (i-1); x += h; plot;
-      c (i-1); y += h; plot;
-      c (i-1); x -= h; plot;
-      d (i-1);
+void b(int i) {
+    if (i > 0) {
+        c(i - 1);
+        y += h;
+        plot;
+        b(i - 1);
+        x += h;
+        plot;
+        b(i - 1);
+        y -= h;
+        plot;
+        a(i - 1);
     }
 }
 
-void d (int i)
-{
-  if (i > 0)
-    {
-      a (i-1); y -= h; plot;
-      d (i-1); x -= h; plot;
-      d (i-1); y += h; plot;
-      c (i-1);
+void c(int i) {
+    if (i > 0) {
+        b(i - 1);
+        x += h;
+        plot;
+        c(i - 1);
+        y += h;
+        plot;
+        c(i - 1);
+        x -= h;
+        plot;
+        d(i - 1);
+    }
+}
+
+void d(int i) {
+    if (i > 0) {
+        a(i - 1);
+        y -= h;
+        plot;
+        d(i - 1);
+        x -= h;
+        plot;
+        d(i - 1);
+        y += h;
+        plot;
+        c(i - 1);
     }
 }
